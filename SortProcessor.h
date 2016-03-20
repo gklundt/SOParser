@@ -5,15 +5,9 @@
 #include "Processor.h"
 #include "Comparator.h"
 #include "MapReader.h"
+#include "Bnode.h"
 
 using namespace std;
-
-struct Bnode {
-    int lineNumber;
-    char *line;
-    Bnode *left;
-    Bnode *right;
-};
 
 class SortProcessor : public Processor, public Comparator {
 
