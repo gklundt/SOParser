@@ -8,8 +8,8 @@ int CircularShiftProcessor::twist(int line, int last_word,
         for (int j = 0; j <= last_word; ++j) {
             int shift = j + i > last_word ? (j + i) - (last_word + 1) : j + i;
 
-            int wl = len.at(shift);
-            int wp = pos.at(shift);
+            int wl = len.at((unsigned long) shift);
+            int wp = pos.at((unsigned long) shift);
 
             push_word(wl, line, j, wp, vw);
         }

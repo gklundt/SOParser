@@ -43,7 +43,7 @@ void OutputProcessor::Process(Data &data) {
          it != data.output_map.end();
          ++it) {
         if (it->word == 0) {
-            collapse_line = collapse_line == -1 ? collapse_line = it->line
+            collapse_line = collapse_line == -1 ? (collapse_line = it->line)
                                                 : collapse_line;
             test_char = mapReader.getWord(data, it->line, it->word);
             int i = 0;
@@ -51,10 +51,10 @@ void OutputProcessor::Process(Data &data) {
                 test_char[i] = (char) (tolower(test_char[i]));
                 ++i;
             }
-            for (set<char *>::iterator it = myset.begin();
-                 it != myset.end();
-                 ++it) {
-                process = Compare(*it, test_char) != 0;
+            for (set<char *>::iterator iterator = myset.begin();
+                 iterator != myset.end();
+                 ++iterator) {
+                process = Compare(*iterator, test_char) != 0;
                 if (!process) {
                     break;
                 }
