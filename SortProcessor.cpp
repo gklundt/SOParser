@@ -2,18 +2,18 @@
 
 void SortProcessor::Process(Data &data) {
 
-    MapReader mapReader;
     int curr_line = 0;
     for (vector<Word>::iterator it = data.output_map.begin();
          it != data.output_map.end();
          ++it) {
 
         if (it->line == curr_line) {
-            Bnode *node = new Bnode;
-            node->line = mapReader.getLine(data, curr_line);
-            node->lineNumber = curr_line;
-            node->left = 0;
-            node->right = 0;
+
+            char * line_text;
+            line_text = mapReader.getLine(data, curr_line);
+            int line_number = curr_line;
+            Bnode *node = new Bnode(line_text, line_number);
+
             if (!my_root) {
                 my_root = node;
             } else {

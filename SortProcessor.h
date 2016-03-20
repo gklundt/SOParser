@@ -21,6 +21,7 @@ public:
 private:
     vector<Word> vw;
     Bnode *my_root;
+    MapReader mapReader;
 
     void fillTree(Bnode *root, Bnode *node);
 
