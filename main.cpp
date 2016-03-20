@@ -4,7 +4,6 @@
 #include "Processor.h"
 #include "InputProcessor.h"
 #include "MapReader.h"
-#include <string>
 #include "CircularShiftProcessor.h"
 #include "SortProcessor.h"
 #include "OutputProcessor.h"
@@ -24,13 +23,11 @@ int main() {
     string input_string;
     string input_line;
 
-
     while (getline(cin, input_line)) {
         input_string.append("\n" + input_line);
     }
     char *input = new char[input_string.length() + 1];
     strcpy(input, input_string.c_str());
-
 
     Data data;
 
@@ -50,13 +47,12 @@ int main() {
     MapReader mr;
     char *n = mr.getOutput(data);
 
-    cout << endl;
     cout << n << endl;
-
 
     delete input_processor;
     delete shift_processor;
-    //delete data;
+    delete sort_processor;
+    delete output_processor;
 
     return 0;
 }

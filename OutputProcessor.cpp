@@ -1,14 +1,4 @@
-/**
- * Project Untitled
- */
-
-
 #include "OutputProcessor.h"
-#include "MapReader.h"
-
-/**
- * OutputProcessor implementation
- */
 
 int OutputProcessor::Compare(const char *lhs, const char *rhs) {
     int pos = 0;
@@ -58,7 +48,7 @@ void OutputProcessor::Process(Data &data) {
             test_char = mapReader.getWord(data, it->line, it->word);
             int i = 0;
             while (test_char[i]) {
-                test_char[i] = (tolower(test_char[i]));
+                test_char[i] = (char) (tolower(test_char[i]));
                 ++i;
             }
             for (set<char *>::iterator it = myset.begin();

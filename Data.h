@@ -1,7 +1,3 @@
-/**
- * Project Untitled
- */
-
 #include "Word.h"
 #include <vector>
 

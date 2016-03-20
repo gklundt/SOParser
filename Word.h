@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _WORD_H
 #define _WORD_H
 

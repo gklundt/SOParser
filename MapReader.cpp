@@ -1,5 +1,3 @@
-#include <iostream>
-#include <cstring>
 #include "MapReader.h"
 
 char *MapReader::getLine(Data &data, int line) {

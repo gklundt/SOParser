@@ -4,6 +4,7 @@
 #include <map>
 #include "Processor.h"
 #include "Comparator.h"
+#include "MapReader.h"
 
 using namespace std;
 
@@ -23,7 +24,6 @@ public:
     void Process(Data &data);
 
 
-
 private:
     vector<Word> vw;
     Bnode *my_root;
@@ -32,7 +32,7 @@ private:
 
     void parseTree(Bnode *root, int &order);
 
-    map<int,int> sort_map;
+    map<int, int> sort_map;
 
     void reorder_word_vector(Data &data);
 

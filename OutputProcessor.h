@@ -1,14 +1,10 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _OUTPUTPROCESSOR_H
 #define _OUTPUTPROCESSOR_H
 
 #include <set>
 #include "Processor.h"
 #include "Comparator.h"
+#include "MapReader.h"
 
 using namespace std;
 

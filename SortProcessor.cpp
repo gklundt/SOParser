@@ -1,10 +1,4 @@
-/**
- * Project Untitled
- */
-
-
 #include "SortProcessor.h"
-#include "MapReader.h"
 
 void SortProcessor::Process(Data &data) {
 
@@ -108,10 +102,10 @@ void SortProcessor::reorder_word_vector(Data &data) {
 
     for (int i = 1; i <= sort_map.size(); ++i) {
         int v = sort_map.at(i);
-        for(vector<Word>::iterator it = data.output_map.begin();
-            it != data.output_map.end();
-            ++it){
-            if(v == it->line){
+        for (vector<Word>::iterator it = data.output_map.begin();
+             it != data.output_map.end();
+             ++it) {
+            if (v == it->line) {
                 push_word(it->length, i, it->word, it->position, vw);
             }
         }
