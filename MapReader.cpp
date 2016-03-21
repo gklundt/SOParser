@@ -10,6 +10,9 @@ char *MapReader::getLine(Data &data, int line) {
         }
     }
 
+    if(chars == 0){
+        return NULL;
+    }
     char *ret = new char[chars];
     ret[0] = '\0';
 
