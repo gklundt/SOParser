@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
+use lib '/home/wm/wm023/modules';
 use Mojolicious::Lite;
-use HTML::Entities;
 
 get '/' => sub {
     my $c = shift;
