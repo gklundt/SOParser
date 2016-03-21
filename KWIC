@@ -1,0 +1,44 @@
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+use HTML::Entities;
+
+get '/' => sub {
+    my $c = shift;
+    $c->render( template => 'index' );
+};
+
+post '/KWIC' => sub {
+    my $c      = shift;
+	my $data = $c->param('input');
+	my $output = join '<br />',`echo '$data' | ./SOParser | uniq`;
+    $c->stash( kwic_input => $main_memory );
+    $c->render( 
+		template => 'KWIC', 
+		output => $output,
+	);
+};
+
+app->start;
+__DATA__
+
+@@ index.html.ep
+% layout 'default';
+% title 'Welcome';
+<h1> KWIC </h1>
+<form action="/KWIC" method="POST">
+<textarea name="input" rows="20" cols="80"></textarea>
+<br />
+<input type="submit" value="Submit">
+</form>
+
+@@ KWIC.html.ep
+% layout 'default';
+% title 'Welcome';
+<h3> Output: <br /><%== $output %> 
+
+@@ layouts/default.html.ep
+<!DOCTYPE html>
+<html>
+  <head><title><%= title %></title></head>
+  <body><%= content %></body>
+</html>
