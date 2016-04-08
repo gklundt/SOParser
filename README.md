@@ -22,7 +22,6 @@ Various KWIC Implementations
 	]
 
 	Will Receive back:
-
 	[
 	  {
 		"purl": "http://uco.edu",
