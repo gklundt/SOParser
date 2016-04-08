@@ -1,13 +1,21 @@
 #!/usr/bin/env perl
 use lib '/home/wm/wm023/modules';
+
+use Data::Dump;
+use DBI;
 use Mojolicious::Lite;
 use Mojo::Log;
-use Mojo::JSON 'to_json';
-use DBI;
+use Mojo::JSON 'to_json','from_json';
 
 my $dbh = DBI->connect("dbi:SQLite:dbname=db/KWIC.db");
 
 my $log = Mojo::Log->new;
+
+sub insert {
+	my ($string, $url) = @_;
+	my $sth = $dbh->prepare("insert into KWIC(string,url) VALUES (?,?)");
+	$sth->execute($string,$url);
+}
 
 get '/' => sub {
     my $c = shift;
@@ -28,12 +36,29 @@ post '/insert' => sub {
 	my $c = shift;
 	my $data = $c->req->json;
 	$log->debug("Received from client: ");
-	$log->debug(to_json($data));
 
+	my $returnData;
+	for (@{$data}) {
+
+		# insert into DB
+		insert($_->{string},$_->{url}); 
+
+		# send input to the ./SOParser
+		chomp(my @shifted = `echo '$_->{string}' |  ./SOParser | uniq`);
+
+		# Blank line showing up for some reason, log and delete
+		$log->debug("Deleting ->" . $shifted[-1] ."<-");
+		splice(@shifted,-1); 
+
+		# Push the shifted lines into the output data structure
+		for my $sh (@shifted) {
+			push @{$returnData}, { pstring => $sh, purl => $_->{url} };
+		}
+	}
 
 	# Echo data back to client
 	$c->render(
-		json => $data
+		json => $returnData,
 	);
 };
 
