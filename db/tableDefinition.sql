@@ -1,6 +1,6 @@
 create table if not exists KWIC
 (
-	stringID NUM,
+	stringID integer primary key,
 	string TEXT,
 	url text
 );
