@@ -52,6 +52,14 @@ Various KWIC Implementations
 	Method: POST
 	Inputs: JSON Array of strings
 	Response: JSON string
+
+	Example:
+
+	Client sends: 
+	[ "Central", "Oklahoma" ]
+	Receives back:
+	"http://uco.edu"
+
 	
 #### /clear
 	Description: Clear the database
