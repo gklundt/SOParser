@@ -93,6 +93,25 @@ post '/search' => sub {
 	);
 };
 
+post '/clear' => sub {
+	my $c = shift;
+	my $data = $c->req->json;
+	$log->debug("received from client");
+	$log->debug(dd $data);
+	if ($data eq 'perl is best' ) {
+		my $sth = $dbh->prepare('delete from KWIC');
+		$sth->execute();
+		$c->render(
+			json => 'OK'
+		);
+	} else {
+		$c->render(
+			json => 'FAIL'
+		);
+	}
+};
+
+
 app->start;
 __DATA__
 
